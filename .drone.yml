@@ -1,0 +1,18 @@
+pipeline:
+  build:
+    when:
+      event: push
+    image: plugins/docker
+    repo: registry.usw.co/cloud/node-12-puppeteer
+    tags:
+      - "${DRONE_COMMIT}"
+      - "${DRONE_BRANCH}"
+
+  build-tag:
+    when:
+      event: tag
+      branch: master
+    image: plugins/docker
+    repo: registry.usw.co/cloud/node-12-puppeteer
+    tags:
+      - "${DRONE_TAG}"
